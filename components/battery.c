@@ -55,9 +55,9 @@
 	{
 		int cap_perc;
 		static const char *symbols[] = {
-			color(RED, "󰂎^d^"),
-			color(RED, "󰁺^d^"),
-			color(YELLOW, "󰁻^d^"),
+			set_fg(RED, "󰂎^d^"),
+			set_fg(RED, "󰁺^d^"),
+			set_fg(YELLOW, "󰁻^d^"),
 			"󰁼^d^",
 			"󰁽^d^",
 			"󰁾^d^",
