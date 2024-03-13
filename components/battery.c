@@ -4,6 +4,7 @@
 
 #include "../slstatus.h"
 #include "../util.h"
+#include "../colors.h"
 
 #if defined(__linux__)
 /*
@@ -50,16 +51,43 @@
 	}
 
 	const char *
+	battery_perc_symbol(const char *bat)
+	{
+		int cap_perc;
+		static const char *symbols[] = {
+			color(RED, "󰂎^d^"),
+			color(RED, "󰁺^d^"),
+			color(YELLOW, "󰁻^d^"),
+			"󰁼^d^",
+			"󰁽^d^",
+			"󰁾^d^",
+			"󰁿^d^",
+			"󰂀^d^",
+			"󰂁^d^",
+			"󰂀^d^",
+			"󰁹^d^",
+		};
+		char path[PATH_MAX];
+
+		if (esnprintf(path, sizeof(path), POWER_SUPPLY_CAPACITY, bat) < 0)
+			return NULL;
+		if (pscanf(path, "%d", &cap_perc) != 1)
+			return NULL;
+
+		return bprintf("%s", symbols[cap_perc / 10]);
+	}
+
+	const char *
 	battery_state(const char *bat)
 	{
 		static struct {
 			char *state;
 			char *symbol;
 		} map[] = {
-			{ "Charging",    "+" },
-			{ "Discharging", "-" },
-			{ "Full",        "o" },
-			{ "Not charging", "o" },
+			{ "Charging",    "󱐋" },
+			{ "Discharging", " " },
+			{ "Full",        "" },
+			{ "Not charging", " " },
 		};
 		size_t i;
 		char path[PATH_MAX], state[12];
