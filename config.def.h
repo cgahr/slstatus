@@ -65,5 +65,18 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+
+	// TODO: print wifi or lan connection
+	// TODO: print notifications
+	// TODO: open config option on click
+	// TODO: volume
+	// { vol_perc, "  %3s   ",           NULL },
+	{ netspeed_rx, "%8s   ",           "wlp0s20f3" },
+	{ netspeed_tx, "%8s   ",           "wlp0s20f3" },
+	{ keymap, "%s ",           NULL },
+	{ cpu_perc, "%3s%%   ",           NULL },
+	{ battery_perc, "%s%% ",           "BAT0" },
+	{ battery_perc_symbol, "%s",           "BAT0" },
+	{ battery_state, "%s ",           "BAT0" },
+	{ datetime, "%s",           "%d. %b %Y %H:%M" },
 };
