@@ -24,3 +24,5 @@
 #define MAGENTA_ALT "#6f5be3"
 
 #define BASEFF "#00ffff"
+
+#define color(color,val) #color#val"^d^"
